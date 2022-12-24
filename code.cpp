@@ -3,7 +3,7 @@
 #include<vector>
 using namespace std;
 
-int m = 15000;
+int m = 20000;
 int n = 10000;
 
 std::vector<std::vector<double>> A(m, std::vector<double>(n));
@@ -37,7 +37,7 @@ int main(){
 
     //connect path with point
     for(int v = 0; v < edge; v++){
-        int num = table[v].begin * 100 + table[v].end;
+        int num = (table[v].begin) * 100 + table[v].end;
         A[count][v] = 1;
         A[count][num] = -1;
         A[count+1][v] = -1;
@@ -96,21 +96,21 @@ int main(){
     //         b[count] = 1;
     //     }
     //     count += 1;
-
     // }
+
     //variable to avoid cycle
-    for(int i = 1; i <= vertex; i++){
-        for(int j = 1; j <= vertex; j++){
-            if(i != j){
-                int num = 100 * i + j;
-                A[count][variable+i] = 1;
-                A[count][variable+j] = -1;
-                A[count][num] = 10000;
-            }
-            b[count] = 9999;
-            count += 1;
-        }
-    }
+    // for(int i = 1; i <= vertex; i++){
+    //     for(int j = 1; j <= vertex; j++){
+    //         if(i != j){
+    //             int num = 100 * i + j;
+    //             A[count][variable+i] = 1;
+    //             A[count][variable+j] = -1;
+    //             A[count][num] = 10000;
+    //         }
+    //         b[count] = 9999;
+    //         count += 1;
+    //     }
+    // }
 
     for(int i = 0; i < 9000; i++){
         type[i] = GLP_BV;
