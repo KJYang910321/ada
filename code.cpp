@@ -69,7 +69,7 @@ int main(){
             A[count+1][v] = -1;
             b[count] = 0;
             b[count+1] = 0;
-            c[v] = 0;
+            c[v] = -1;
             count += 2;
         }
     }
@@ -130,9 +130,9 @@ int main(){
                 long long num = 100 * i + j;
                 A[count][variable+i] = 1;
                 A[count][variable+j] = -1;
-                A[count][num] = 9000;
+                A[count][num] = 10000;
             }
-            b[count] = 8999;
+            b[count] = 9999;
             count += 1;
         }
     }
