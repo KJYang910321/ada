@@ -5,7 +5,7 @@ using namespace std;
 
 long long m = 10000;
 long long n = 10000;
-long long maxi = -1000000000000000;
+long long maxi = -100000000;
 
 std::vector<std::vector<double>> A(m, std::vector<double>(n));
 std::vector<double> b(m), c(n);
@@ -143,7 +143,7 @@ int main(){
         type[i] = GLP_CV;
     }
 
-    for(int cv = 100; cv < 9000; cv++){
+    for(int cv = 101; cv < 9000; cv++){
         if(check[cv] == 0){
             c[cv] = maxi;
         }
