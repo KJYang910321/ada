@@ -148,7 +148,7 @@ int main(){
             c[m] = check[loc];
         }
         else{
-            c[m] = -1;
+            c[m] = maxi;
         }
     }
 
