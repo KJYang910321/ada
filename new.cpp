@@ -24,6 +24,7 @@ long long check2[10000] = {0};
 std::pair<double, std::vector<double>> res;
 
 int main(){
+
     int vertex, edge;
     cin >> vertex >> edge;
     for(int e = 0; e < edge; e++){
@@ -42,7 +43,7 @@ int main(){
         table[e].weight = value;
     }
     
-    int variable = vertex * vertex;
+    int variable = vertex * vertex + vertex;
 
     //remove not possible edge first
     //clear cycle
@@ -110,10 +111,10 @@ int main(){
     //     count += 1;
     // }
 
-    for(int v = 0; v <= variable+vertex; v++){
+    for(int v = 0; v <= variable; v++){
         type[v] = GLP_BV;
     }
-    for(int v = variable+vertex+1; v < 7000; v++){
+    for(int v = variable+1; v < 7000; v++){
         type[v] = GLP_CV;
     }
 
