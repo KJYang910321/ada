@@ -143,7 +143,7 @@ int main(){
         type[i] = GLP_CV;
     }
 
-    for(int cv = 100; cv < 10000; cv++){
+    for(int cv = 100; cv < 9000; cv++){
         if(check[cv] == 0){
             c[cv] = maxi;
         }
