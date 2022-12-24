@@ -52,7 +52,6 @@ int main(){
             if (check[key] == 0){
                 A[count][key] = 1;
                 b[count] = 0;
-                count ++;
             }
             else{
                 A[count][variable+v] = 1;
@@ -60,8 +59,8 @@ int main(){
                 A[count][key] = 10000;
                 b[count] = 9999;
                 c[key] = check[key];
-                count ++;
             }
+            count++;
         }
     }
     
@@ -111,10 +110,10 @@ int main(){
         count += 1;
     }
 
-    for(int v = 0; v <= variable; v++){
+    for(int v = 0; v <= variable+vertex; v++){
         type[v] = GLP_BV;
     }
-    for(int v = variable+1; v < 7000; v++){
+    for(int v = variable+vertex+1; v < 7000; v++){
         type[v] = GLP_CV;
     }
 
