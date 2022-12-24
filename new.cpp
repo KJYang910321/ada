@@ -17,13 +17,15 @@ struct path{
 
 struct path table[100];
 long long count = 0;
-long long variable = 9000;
 long long check[10000] = {0};
-long long check2[10000] = {0};
 
 std::pair<double, std::vector<double>> res;
 
 int main(){
+
+    for(int i = 0; i < 10000; i++){
+        check[i] = -1;
+    }
 
     int vertex, edge;
     cin >> vertex >> edge;
@@ -31,7 +33,7 @@ int main(){
         int start, end, value;
         cin >> start >> end >> value;
         int num = vertex * start + end;
-        if (check[num] == 0){
+        if (check[num] == -1){
             check[num] = value;
         }
         else{
@@ -50,7 +52,7 @@ int main(){
     for(int v = 1; v <= vertex; v++){
         for(int w = 1; w <= vertex; w++){
             int key = v * vertex + w;
-            if (check[key] == 0){
+            if (check[key] == -1){
                 A[count][key] = 1;
                 b[count] = 0;
             }
@@ -125,7 +127,14 @@ int main(){
     else {
         cout << (long long)res.first << '\n';
         for(long long i = 0; i < edge; i++){
-            cout << res.second[i];
+            int line = table[i].number;
+            int vv = table[i].weight;
+            if(vv = check[line] && res.second[line] == 1){
+                cout << 1;
+            }
+            else{
+                cout << 0;
+            }
         }
     }
     cout << '\n';
