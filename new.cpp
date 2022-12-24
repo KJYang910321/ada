@@ -129,7 +129,7 @@ int main(){
         for(long long i = 0; i < edge; i++){
             int line = table[i].number;
             int vv = table[i].weight;
-            if(vv = check[line] && res.second[line] == 1){
+            if(vv == check[line] && res.second[line] == 1){
                 cout << 1;
             }
             else{
