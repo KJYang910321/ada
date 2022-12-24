@@ -108,8 +108,8 @@ int main(){
                 A[count][num] = 10000;
             }
             b[count] = 9999;
+            count += 1;
         }
-        count += 1;
     }
 
     for(int i = 0; i < 9000; i++){
