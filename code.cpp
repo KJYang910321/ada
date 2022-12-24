@@ -8,7 +8,7 @@ int n = 10000;
 
 std::vector<std::vector<double>> A(m, std::vector<double>(n));
 std::vector<double> b(m), c(n);
-std::vector<int> type(m);
+std::vector<int> type(n);
 
 struct path{
     int begin;
@@ -44,8 +44,6 @@ int main(){
         A[count+1][num] = 1;
         b[count] = 0;
         b[count+1] = 0;
-        type[count] = GLP_BV;
-        type[count+1] = GLP_BV;
         count += 2;
     }
 
@@ -79,8 +77,6 @@ int main(){
             b[count] = 0;
             b[count+1] = 0;
         }
-        type[count] = GLP_BV;
-        type[count+1] = GLP_BV;
         
         count += 2;
     }
@@ -99,7 +95,6 @@ int main(){
         else{
             b[count] = 1;
         }
-        type[count] = GLP_BV;
         count += 1;
 
     }
@@ -113,10 +108,17 @@ int main(){
                 A[count][num] = 10000;
             }
             b[count] = 9999;
-            type[count] = GLP_CV;
             count += 1;
         }
     }
+
+    for(int i = 0; i < 9000; i++){
+        type[i] = GLP_BV;
+    }
+    for(int i = 9000; i < 10000; i++){
+        type[i] = GLP_CV;
+    }
+
     res = ypglpk::mixed_integer_linear_programming(A,b,c,type);
     if (res.first == -ypglpk::INF) {
         cout << -1 << '\n';
