@@ -3,9 +3,8 @@
 #include<vector>
 using namespace std;
 
-long long m = 10000;
-long long n = 10000;
-long long maxi = -100000000;
+long long m = 20000;
+long long n = 7000;
 
 std::vector<std::vector<double>> A(m, std::vector<double>(n));
 std::vector<double> b(m), c(n);
@@ -115,7 +114,7 @@ int main(){
     for(int v = 0; v <= variable; v++){
         type[v] = GLP_BV;
     }
-    for(int v = variable+1; v <= variable+vertex; v++){
+    for(int v = variable+1; v < 7000; v++){
         type[v] = GLP_CV;
     }
 
