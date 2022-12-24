@@ -121,7 +121,7 @@ int main(){
         type[v] = GLP_CV;
     }
 
-    res = ypglpk::mixed_long longeger_linear_programming(A,b,c,type);
+    res = ypglpk::mixed_integer_linear_programming(A,b,c,type);
     if (res.first == -ypglpk::INF) {
         cout << -1 << '\n';
     }
