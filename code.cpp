@@ -78,14 +78,12 @@ int main(){
     for(long long v = 1; v <= vertex; v++){
         //inside
         for(long long i = 1; i <= vertex; i++){
-            if(v == i) continue;
             long long num = i * 100 + v;
             A[count][num] = 1;
             A[count+1][num] = -1;
         }
         //outside
         for(long long o = 1; o <= vertex; o++){
-            if(v == o) continue;
             long long num = v * 100 + o;
             A[count][num] = -1;
             A[count+1][num] = 1;
