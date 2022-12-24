@@ -12,9 +12,8 @@ std::vector<double> b(m), c(n);
 std::vector<int> type(n);
 
 struct path{
-    long long begin;
-    long long end;
-    long long len;
+    int number;
+    int weight;
 };
 
 struct path table[100];
@@ -26,66 +25,61 @@ long long check2[10000] = {0};
 std::pair<double, std::vector<double>> res;
 
 int main(){
-
-    //ypglpk::set_output(true);
-
-    long long vertex, edge;
+    int vertex, edge;
     cin >> vertex >> edge;
-    for(long long i = 0; i < edge; i++){
-        long long begin, end, value;
-        cin >> begin >> end >> value;
-        table[i].begin = begin;
-        table[i].end = end;
-        long long ck = 100 * begin + end;
-        if(check[ck] == 0){
-            check[ck] = value;
+    for(int e = 0; e < edge; e++){
+        int start, end, value;
+        cin >> start >> end >> value;
+        int num = vertex * start + end;
+        if (check[num] == 0){
+            check[num] = value;
         }
         else{
-            if (value >= check[ck]){
-                check[ck] = value;
+            if (value >= check[num]){
+                check[num] = value;
             }
         }
-        table[i].len = value;
-
-        
+        table[e].number = num;
+        table[e].weight = value;
     }
+    
+    int variable = vertex * vertex;
 
-    // //connect path with polong long
-    // for(long long v = 0; v < edge; v++){
-    //     long long num = (table[v].begin) * 100 + table[v].end;
-    //     long long weight = table[v].len;
-    //     if (weight == check[num] && check2[num] == 0){
-    //         A[count][v] = 1;
-    //         A[count][num] = -1;
-    //         A[count+1][v] = -1;
-    //         A[count+1][num] = 1;
-    //         b[count] = 0;
-    //         b[count+1] = 0;
-    //         c[v] = weight;
-    //         count += 2;
-    //         check2[num] = 1;
-    //     }
-    //     else{
-    //         A[count][v] = 1;
-    //         A[count+1][v] = -1;
-    //         b[count] = 0;
-    //         b[count+1] = 0;
-    //         c[v] = -1;
-    //         count += 2;
-    //     }
-    // }
-
-    //each polong long inside - outside = 0
+    //remove not possible edge first
+    //clear cycle
+    for(int v = 1; v <= vertex; v++){
+        type[variable+v] = GLP_CV;
+        for(int w = 1; w <= vertex; w++){
+            int key = v * vertex + w;
+            if (check[key] == 0){
+                A[count][key] = 1;
+                b[count] = 0;
+                type[key] = GLP_BV;
+                count ++;
+            }
+            else{
+                A[count][variable+v] = 1;
+                A[count][variable+w] = -1;
+                A[count][key] = 10000;
+                b[count] = 9999;
+                c[key] = check[key];
+                type[key] = GLP_BV;
+                count ++;
+            }
+        }
+    }
+    
+    //each vertex inside - outside = 0
     for(long long v = 1; v <= vertex; v++){
         //inside
         for(long long i = 1; i <= vertex; i++){
-            long long num = i * 100 + v;
+            long long num = i * vertex + v;
             A[count][num] = 1;
             A[count+1][num] = -1;
         }
         //outside
         for(long long o = 1; o <= vertex; o++){
-            long long num = v * 100 + o;
+            long long num = v * vertex + o;
             A[count][num] = -1;
             A[count+1][num] = 1;
         }
@@ -101,7 +95,6 @@ int main(){
             b[count] = 0;
             b[count+1] = 0;
         }
-        
         count += 2;
     }
 
@@ -109,7 +102,7 @@ int main(){
     for(long long v = 1; v <= vertex; v++){
         for(long long o = 1; o <= vertex; o++){
             if(v != o){
-                long long num = 100 * v + o;
+                long long num = vertex * v + o;
                 A[count][num] = 1;
             }
         }
@@ -120,44 +113,6 @@ int main(){
             b[count] = 1;
         }
         count += 1;
-    }
-
-    // //variable to avoid cycle
-    // for(long long i = 1; i <= vertex; i++){
-    //     for(long long j = 1; j <= vertex; j++){
-    //         if(i != j){
-    //             long long num = 100 * i + j;
-    //             A[count][variable+i] = 1;
-    //             A[count][variable+j] = -1;
-    //             A[count][num] = 10000;
-    //         }
-    //         b[count] = 9999;
-    //         count += 1;
-    //     }
-    // }
-
-    for(int m = 0; m < edge; m++){
-        int front = table[m].begin;
-        int to = table[m].end;
-        A[count][m] = 1;
-        A[count][variable+front] = 1;
-        A[count][variable+to] = -1;
-        int loc = front*100 + to;
-        A[count][loc] = 10000;
-        b[count] = 10000;
-        if(table[m].len == check[loc]){
-            c[m] = check[loc];
-        }
-        else{
-            c[m] = maxi;
-        }
-    }
-
-    for(long long i = 0; i < 9000; i++){
-        type[i] = GLP_BV;
-    }
-    for(long long i = 9000; i < 10000; i++){
-        type[i] = GLP_CV;
     }
 
     res = ypglpk::mixed_integer_linear_programming(A,b,c,type);
@@ -171,4 +126,6 @@ int main(){
         }
     }
     cout << '\n';
+
+
 }
