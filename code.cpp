@@ -13,11 +13,14 @@ std::vector<int> type(n);
 struct path{
     int begin;
     int end;
+    int len;
 };
 
 struct path table[100];
 int count = 0;
 int variable = 9000;
+int check[10000] = {0};
+int check2[10000] = {0};
 
 std::pair<double, std::vector<double>> res;
 
@@ -32,19 +35,43 @@ int main(){
         cin >> begin >> end >> value;
         table[i].begin = begin;
         table[i].end = end;
-        c[i] = value;
+        int ck = 100 * begin + end;
+        if(check[ck] == 0){
+            check[ck] = value;
+        }
+        else{
+            if (value >= check[ck]){
+                check[ck] = value;
+            }
+        }
+        table[i].len = value;
+
+        
     }
 
     //connect path with point
     for(int v = 0; v < edge; v++){
         int num = (table[v].begin) * 100 + table[v].end;
-        A[count][v] = 1;
-        A[count][num] = -1;
-        A[count+1][v] = -1;
-        A[count+1][num] = 1;
-        b[count] = 0;
-        b[count+1] = 0;
-        count += 2;
+        int weight = table[v].len;
+        if (weight == check[num] && check2[num] == 0){
+            A[count][v] = 1;
+            A[count][num] = -1;
+            A[count+1][v] = -1;
+            A[count+1][num] = 1;
+            b[count] = 0;
+            b[count+1] = 0;
+            c[v] = weight;
+            count += 2;
+            check2[num] = 1;
+        }
+        else{
+            A[count][v] = 1;
+            A[count+1][v] = -1;
+            b[count] = 0;
+            b[count+1] = 0;
+            c[v] = 0;
+            count += 2;
+        }
     }
 
     //each point inside - outside = 0
