@@ -135,16 +135,16 @@ int main(){
     //     }
     // }
 
-    for(int m = 0; m < edge< m++){
+    for(int m = 0; m < edge; m++){
         int front = table[m].begin;
         int to = table[m].end;
         A[count][m] = 1;
         A[count][variable+front] = 1;
-        A[count][variable+end] = -1;
-        int loc = front*100 + end;
+        A[count][variable+to] = -1;
+        int loc = front*100 + to;
         A[count][loc] = 10000;
         b[count] = 10000;
-        if(table[m].value == check[loc]){
+        if(table[m].len == check[loc]){
             c[m] = check[loc];
         }
         else{
