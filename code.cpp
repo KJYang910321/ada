@@ -51,12 +51,14 @@ int main(){
     for(int v = 1; v <= vertex; v++){
         //inside
         for(int i = 1; i <= vertex; i++){
+            if(v == i) continue;
             int num = i * 100 + v;
             A[count][num] = 1;
             A[count+1][num] = -1;
         }
         //outside
         for(int o = 1; o <= vertex; o++){
+            if(v == o) continue;
             int num = v * 100 + o;
             A[count][num] = -1;
             A[count+1][num] = 1;
