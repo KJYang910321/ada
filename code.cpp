@@ -81,23 +81,23 @@ int main(){
         count += 2;
     }
 
-    //output path <= 1
-    for(int v = 1; v <= vertex; v++){
-        for(int o = 1; o <= vertex; o++){
-            if(v != o){
-                int num = 100 * v + o;
-                A[count][num] = 1;
-            }
-        }
-        if(v == vertex){
-            b[count] = 0;
-        }
-        else{
-            b[count] = 1;
-        }
-        count += 1;
+    // //output path <= 1
+    // for(int v = 1; v <= vertex; v++){
+    //     for(int o = 1; o <= vertex; o++){
+    //         if(v != o){
+    //             int num = 100 * v + o;
+    //             A[count][num] = 1;
+    //         }
+    //     }
+    //     if(v == vertex){
+    //         b[count] = 0;
+    //     }
+    //     else{
+    //         b[count] = 1;
+    //     }
+    //     count += 1;
 
-    }
+    // }
     //variable to avoid cycle
     for(int i = 1; i <= vertex; i++){
         for(int j = 1; j <= vertex; j++){
