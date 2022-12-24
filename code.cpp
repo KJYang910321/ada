@@ -3,7 +3,7 @@
 #include<vector>
 using namespace std;
 
-long long m = 20000;
+long long m = 10000;
 long long n = 10000;
 
 std::vector<std::vector<double>> A(m, std::vector<double>(n));
