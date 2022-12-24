@@ -3,9 +3,9 @@
 #include<vector>
 using namespace std;
 
-vector<vector<double>> A;
-vector<double> b;
-vector<double> c;
+vector<double> A(15000, std::vector<double>(10000));
+vector<double> b(15000);
+vector<double> c(10000);
 vector<int> type;
 
 struct path{
