@@ -47,35 +47,35 @@ int main(){
         count += 2;
     }
 
-    // //each point inside - outside = 0
-    // for(int v = 1; v <= vertex; v++){
-    //     //inside
-    //     for(int i = 1; i <= vertex; i++){
-    //         int num = i * 100 + v;
-    //         A[count][num] = 1;
-    //         A[count+1][num] = -1;
-    //     }
-    //     //outside
-    //     for(int o = 1; o <= vertex; o++){
-    //         int num = v * 100 + o;
-    //         A[count][num] = -1;
-    //         A[count+1][num] = 1;
-    //     }
-    //     if (v == 1){
-    //         b[count] = -1;
-    //         b[count+1] = -1;
-    //     }
-    //     else if(v == vertex){
-    //         b[count] = 1;
-    //         b[count+1] = 1;
-    //     }
-    //     else{
-    //         b[count] = 0;
-    //         b[count+1] = 0;
-    //     }
+    //each point inside - outside = 0
+    for(int v = 1; v <= vertex; v++){
+        //inside
+        for(int i = 1; i <= vertex; i++){
+            int num = i * 100 + v;
+            A[count][num] = 1;
+            A[count+1][num] = -1;
+        }
+        //outside
+        for(int o = 1; o <= vertex; o++){
+            int num = v * 100 + o;
+            A[count][num] = -1;
+            A[count+1][num] = 1;
+        }
+        if (v == 1){
+            b[count] = -1;
+            b[count+1] = -1;
+        }
+        else if(v == vertex){
+            b[count] = 1;
+            b[count+1] = 1;
+        }
+        else{
+            b[count] = 0;
+            b[count+1] = 0;
+        }
         
-    //     count += 2;
-    // }
+        count += 2;
+    }
 
     //output path <= 1
     for(int v = 1; v <= vertex; v++){
