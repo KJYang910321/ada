@@ -7,16 +7,17 @@ vector<vector<double>> A;
 vector<double> b;
 vector<double> c;
 vector<int> type;
-struct path table[100];
-int count = 0;
-int variable = 9000;
-
-std::pair<double, std::vector<double>> res;
 
 struct path{
     int begin;
     int end;
 };
+
+struct path table[100];
+int count = 0;
+int variable = 9000;
+
+std::pair<double, std::vector<double>> res;
 
 int main(){
 
@@ -109,7 +110,7 @@ int main(){
                 A[count][variable+j] = -1;
                 A[count][num] = 10000;
             }
-            B[count] = 9999;
+            b[count] = 9999;
             type[count] = GLP_CV;
             count += 1;
         }
@@ -121,7 +122,7 @@ int main(){
     else {
         cout << (long long)res.first << '\n';
         for(int i = 0; i < edge; i++){
-            cout << res.second[i]
+            cout << res.second[i];
         }
     }
 
