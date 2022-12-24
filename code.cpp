@@ -3,10 +3,12 @@
 #include<vector>
 using namespace std;
 
-vector<double> A(15000, std::vector<double>(10000));
-vector<double> b(15000);
-vector<double> c(10000);
-vector<int> type;
+int m = 15000;
+int n = 10000;
+
+std::vector<std::vector<double>> A(m, std::vector<double>(n));
+std::vector<double> b(m), c(n);
+std::vector<int> type(m);
 
 struct path{
     int begin;
