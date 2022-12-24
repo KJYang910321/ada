@@ -61,18 +61,20 @@ int main(){
             A[count][num] = -1;
             A[count+1][num] = 1;
         }
-        if (v == 1){
-            b[count] = -1;
-            b[count+1] = -1;
-        }
-        else if(v == vertex){
-            b[count] = 1;
-            b[count+1] = 1;
-        }
-        else{
-            b[count] = 0;
-            b[count+1] = 0;
-        }
+        // if (v == 1){
+        //     b[count] = -1;
+        //     b[count+1] = -1;
+        // }
+        // else if(v == vertex){
+        //     b[count] = 1;
+        //     b[count+1] = 1;
+        // }
+        // else{
+        //     b[count] = 0;
+        //     b[count+1] = 0;
+        // }
+        b[count] = 0;
+        b[count+1] = 0;
         
         count += 2;
     }
@@ -101,9 +103,9 @@ int main(){
                 int num = 100 * i + j;
                 A[count][variable+i] = 1;
                 A[count][variable+j] = -1;
-                A[count][num] = 10000;
+                A[count][num] = 9000;
             }
-            b[count] = 9999;
+            b[count] = 8999;
             count += 1;
         }
     }
