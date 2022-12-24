@@ -61,14 +61,14 @@ int main(){
             A[count][num] = -1;
             A[count+1][num] = 1;
         }
-        if (v == 1){
-            b[count] = -1;
-            b[count+1] = -1;
-        }
-        // else if(v == vertex){
-        //     b[count] = 1;
-        //     b[count+1] = 1;
+        // if (v == 1){
+        //     b[count] = -1;
+        //     b[count+1] = -1;
         // }
+        if(v == vertex){
+            b[count] = 1;
+            b[count+1] = 1;
+        }
         else{
             b[count] = 0;
             b[count+1] = 0;
