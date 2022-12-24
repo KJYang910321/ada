@@ -54,26 +54,26 @@ int main(){
             if(v == i) continue;
             int num = i * 100 + v;
             A[count][num] = 1;
-            //A[count+1][num] = -1;
+            A[count+1][num] = -1;
         }
         //outside
         for(int o = 1; o <= vertex; o++){
             if(v == o) continue;
             int num = v * 100 + o;
             A[count][num] = -1;
-            //A[count+1][num] = 1;
+            A[count+1][num] = 1;
         }
         if (v == 1){
             b[count] = -1;
-            //b[count+1] = -1;
+            b[count+1] = 1;
         }
         else if(v == vertex){
             b[count] = 1;
-            //b[count+1] = 1;
+            b[count+1] = -1;
         }
         else{
             b[count] = 0;
-            //b[count+1] = 0;
+            b[count+1] = 0;
         }
         
         count += 2;
