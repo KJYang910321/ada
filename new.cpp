@@ -48,13 +48,11 @@ int main(){
     //remove not possible edge first
     //clear cycle
     for(int v = 1; v <= vertex; v++){
-        type[variable+v] = GLP_CV;
         for(int w = 1; w <= vertex; w++){
             int key = v * vertex + w;
             if (check[key] == 0){
                 A[count][key] = 1;
                 b[count] = 0;
-                type[key] = GLP_BV;
                 count ++;
             }
             else{
@@ -63,7 +61,6 @@ int main(){
                 A[count][key] = 10000;
                 b[count] = 9999;
                 c[key] = check[key];
-                type[key] = GLP_BV;
                 count ++;
             }
         }
@@ -113,6 +110,13 @@ int main(){
             b[count] = 1;
         }
         count += 1;
+    }
+
+    for(int v = 0; v <= variable; v++){
+        type[v] = GLP_BV;
+    }
+    for(int v = variable+1, v <=variable+80; v++){
+        type[v] = GLP_CV;
     }
 
     res = ypglpk::mixed_integer_linear_programming(A,b,c,type);
