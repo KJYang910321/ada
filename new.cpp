@@ -11,28 +11,29 @@ std::vector<double> b(m), c(n);
 std::vector<int> type(n);
 
 struct path{
-    int number;
-    int weight;
+    long long number;
+    long long weight;
 };
 
 struct path table[100];
 long long count = 0;
 long long check[10000] = {0};
+long long check2[10000] = {0};
 
 std::pair<double, std::vector<double>> res;
 
 int main(){
 
-    for(int i = 0; i < 10000; i++){
+    for(long long i = 0; i < 10000; i++){
         check[i] = -1;
     }
 
-    int vertex, edge;
+    long long vertex, edge;
     cin >> vertex >> edge;
-    for(int e = 0; e < edge; e++){
-        int start, end, value;
+    for(long long e = 0; e < edge; e++){
+        long long start, end, value;
         cin >> start >> end >> value;
-        int num = vertex * start + end;
+        long long num = vertex * start + end;
         if (check[num] == -1){
             check[num] = value;
         }
@@ -45,13 +46,13 @@ int main(){
         table[e].weight = value;
     }
     
-    int variable = vertex * vertex + vertex;
+    long long variable = vertex * vertex + vertex;
 
     //remove not possible edge first
     //clear cycle
-    for(int v = 1; v <= vertex; v++){
-        for(int w = 1; w <= vertex; w++){
-            int key = v * vertex + w;
+    for(long long v = 1; v <= vertex; v++){
+        for(long long w = 1; w <= vertex; w++){
+            long long key = v * vertex + w;
             if (check[key] == -1){
                 A[count][key] = 1;
                 b[count] = 0;
@@ -113,23 +114,24 @@ int main(){
         count += 1;
     }
 
-    for(int v = 0; v <= variable; v++){
+    for(long long v = 0; v <= variable; v++){
         type[v] = GLP_BV;
     }
-    for(int v = variable+1; v < 7000; v++){
+    for(long long v = variable+1; v < 7000; v++){
         type[v] = GLP_CV;
     }
 
-    res = ypglpk::mixed_integer_linear_programming(A,b,c,type);
+    res = ypglpk::mixed_long longeger_linear_programming(A,b,c,type);
     if (res.first == -ypglpk::INF) {
         cout << -1 << '\n';
     }
     else {
         cout << (long long)res.first << '\n';
         for(long long i = 0; i < edge; i++){
-            int line = table[i].number;
-            int vv = table[i].weight;
-            if(vv == check[line] && res.second[line] == 1){
+            long long line = table[i].number;
+            long long vv = table[i].weight;
+            if(vv == check[line] && res.second[line] == 1 && check2[line] == 0){
+                check2[line] = 1;
                 cout << 1;
             }
             else{
