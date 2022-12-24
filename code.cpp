@@ -6,8 +6,8 @@ using namespace std;
 int m = 15000;
 int n = 10000;
 
-std::vector<std::vector<int>> A(m, std::vector<int>(n));
-std::vector<int> b(m), c(n);
+std::vector<std::vector<double>> A(m, std::vector<double>(n));
+std::vector<double> b(m), c(n);
 std::vector<int> type(n);
 
 struct path{
@@ -19,7 +19,7 @@ struct path table[100];
 int count = 0;
 int variable = 9000;
 
-std::pair<int, std::vector<int>> res;
+std::pair<double, std::vector<double>> res;
 
 int main(){
 
