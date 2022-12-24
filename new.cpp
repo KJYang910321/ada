@@ -115,7 +115,7 @@ int main(){
     for(int v = 0; v <= variable; v++){
         type[v] = GLP_BV;
     }
-    for(int v = variable+1, v <=variable+80; v++){
+    for(int v = variable+1; v <=variable+80; v++){
         type[v] = GLP_CV;
     }
 
