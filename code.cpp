@@ -26,7 +26,7 @@ std::pair<double, std::vector<double>> res;
 
 int main(){
 
-    ypglpk::set_output(true);
+    //ypglpk::set_output(true);
 
     int vertex, edge;
     cin >> vertex >> edge;
