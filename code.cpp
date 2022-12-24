@@ -5,7 +5,7 @@ using namespace std;
 
 long long m = 10000;
 long long n = 10000;
-long long maxi = -10000000000;
+long long maxi = -1000000000000000;
 
 std::vector<std::vector<double>> A(m, std::vector<double>(n));
 std::vector<double> b(m), c(n);
