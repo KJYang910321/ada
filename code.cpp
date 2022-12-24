@@ -1,6 +1,7 @@
 #include "ypglpk.hpp"
 #include <iostream>
 #include<vector>
+using namespace std;
 
 vector<vector<double>> A;
 vector<double> b;
@@ -19,7 +20,7 @@ struct path{
 
 int main(){
 
-    set_output(true);
+    ypglpk::set_output(true);
 
     int vertex, edge;
     cin >> vertex >> edge;
@@ -113,7 +114,7 @@ int main(){
             count += 1;
         }
     }
-    res = mixed_integer_linear_programming(A,b,c,type);
+    res = ypglpk::mixed_integer_linear_programming(A,b,c,type);
     if (res.first == -ypglpk::INF) {
         cout << -1 << '\n';
     }
